@@ -3,7 +3,10 @@ package knight.arkham.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import knight.arkham.game.screens.GameScreen;
+import knight.arkham.game.screens.MainMenuScreen;
 
 public class Platformer extends Game {
 
@@ -13,7 +16,11 @@ public class Platformer extends Game {
 
 	private int heightScreen;
 
-	private OrthographicCamera camera;
+	private OrthographicCamera globalCamera;
+
+	public SpriteBatch batch;
+
+	public BitmapFont font;
 
 
 	public Platformer() {
@@ -29,10 +36,13 @@ public class Platformer extends Game {
 		widthScreen = Gdx.graphics.getWidth();
 		heightScreen = Gdx.graphics.getHeight();
 
-		camera = new OrthographicCamera();
-		camera.setToOrtho(false, widthScreen, heightScreen);
+		globalCamera = new OrthographicCamera();
+		globalCamera.setToOrtho(false, widthScreen, heightScreen);
 
-		setScreen(new GameScreen(camera));
+		batch = new SpriteBatch();
+		font = new BitmapFont();
+
+		setScreen(new MainMenuScreen());
 	}
 
 
