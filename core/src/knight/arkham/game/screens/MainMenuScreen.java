@@ -13,20 +13,18 @@ public class MainMenuScreen extends ScreenAdapter {
 
     private final OrthographicCamera camera;
 
-    public MainMenuScreen() {
+    public MainMenuScreen(OrthographicCamera globalCamera) {
 
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, 960, 640);
+        camera = globalCamera;
     }
 
 
     @Override
     public void render(float delta) {
 
-        ScreenUtils.clear(0, 0, 0.2f, 1);
+        ScreenUtils.clear(0, 0, 0, 1);
 
         camera.update();
-
 
         game.batch.setProjectionMatrix(camera.combined);
 

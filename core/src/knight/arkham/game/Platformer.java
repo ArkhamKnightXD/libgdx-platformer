@@ -12,16 +12,15 @@ public class Platformer extends Game {
 
 	public static Platformer INSTANCE;
 
+	public SpriteBatch batch;
+
+	public BitmapFont font;
+
 	private int widthScreen;
 
 	private int heightScreen;
 
 	private OrthographicCamera globalCamera;
-
-	public SpriteBatch batch;
-
-	public BitmapFont font;
-
 
 	public Platformer() {
 
@@ -42,18 +41,21 @@ public class Platformer extends Game {
 		batch = new SpriteBatch();
 		font = new BitmapFont();
 
-		setScreen(new MainMenuScreen());
+		setScreen(new GameScreen(globalCamera));
 	}
 
 
-	@Override
-	public void render () {
-
+	//Esta linea de codigo es jodidamente importante, sin esta no puedo renderizar nada en las demas pantallas
+	//me causo demasiados problemas
+	public void render() {
+		super.render(); // important!
 	}
 
 
 	@Override
 	public void dispose () {
 
+		batch.dispose();
+		font.dispose();
 	}
 }
