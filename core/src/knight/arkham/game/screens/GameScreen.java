@@ -12,7 +12,8 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.ScreenUtils;
 import knight.arkham.game.Platformer;
-import knight.arkham.game.helpers.TileMapHelper;
+import knight.arkham.game.helpers.TileMapHelperService;
+import knight.arkham.game.objects.Player;
 
 import static knight.arkham.game.helpers.Constants.PIXELS_PER_METER;
 
@@ -32,6 +33,8 @@ public class GameScreen extends ScreenAdapter {
 
     private final OrthogonalTiledMapRenderer mapRenderer;
 
+    private Player player;
+
 
     public GameScreen(OrthographicCamera globalCamera) {
 
@@ -46,12 +49,13 @@ public class GameScreen extends ScreenAdapter {
 
 
         //para instanciar nuestro objeto world debemos pasarle un vector2 en el que especificamos la gravedad de X y Y
-        //por ahora seran 0
-        world = new World(new Vector2(0,0), false);
+        //Seteare la gravedad en con el valor de 25 negativo, como es gravedad debe de ser negativo pues va para abajo
+//Para que mi objeto no sea tan liviano seteare la gravedad en 25 en vez de 9.88
+        world = new World(new Vector2(0,-200f), false);
 
         box2DDebugRenderer = new Box2DDebugRenderer();
 
-        TileMapHelper tileMapHelper = new TileMapHelper(this);
+        TileMapHelperService tileMapHelper = new TileMapHelperService(this);
 
         mapRenderer = tileMapHelper.setupMap();
     }
@@ -68,6 +72,8 @@ public class GameScreen extends ScreenAdapter {
         world.step(1/60f, 6, 2);
 
         cameraUpdate();
+
+        player.update();
 
         //camera combined envia la Camera's view and projection matrices.
         batch.setProjectionMatrix(camera.combined);
@@ -86,8 +92,14 @@ public class GameScreen extends ScreenAdapter {
     //metodo encargado de hacer que la camara siga a nuestro jugador
     private void cameraUpdate(){
 
+        Vector3 cameraPosition = camera.position;
+
+//        Hago la operaciones extra para conseguir un movimiento de camara mas smooth
+        cameraPosition.x = Math.round(player.getBody().getPosition().x * PIXELS_PER_METER * 10) / 10f;
+        cameraPosition.y = Math.round(player.getBody().getPosition().y * PIXELS_PER_METER * 10) / 10f;
+
         //Le indicamos una nueva posicion inicial a nuestra camara y luego actualizamos la camara con la nueva posicion
-        camera.position.set(new Vector3(470,320,0));
+        camera.position.set(cameraPosition);
         camera.update();
     }
 
@@ -128,4 +140,6 @@ public class GameScreen extends ScreenAdapter {
     }
 
     public World getWorld() {return world;}
+
+    public void setPlayer(Player player) {this.player = player;}
 }
