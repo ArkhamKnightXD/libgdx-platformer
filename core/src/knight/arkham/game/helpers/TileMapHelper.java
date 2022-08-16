@@ -75,7 +75,8 @@ public class TileMapHelper {
 
         for (int i = 0; i < vertices.length /2; i++){
 
-//            Guardo las coordenadas X y Y de mi vertice
+//            Guardo las coordenadas X y Y de mi vertice, para obtener estos datos es necesario multiplicar *2
+//            No estoy consciente porque es necesario multiplicar * 2
             Vector2 current = new Vector2(vertices[i*2] / PIXELS_PER_METER, vertices[i*2+1] / PIXELS_PER_METER);
 
 //            Y las guardo en el arreglo que contendra todas las posiciones en el mundo
