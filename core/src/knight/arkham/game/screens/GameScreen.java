@@ -12,7 +12,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.ScreenUtils;
 import knight.arkham.game.Platformer;
-import knight.arkham.game.helpers.TileMapHelperService;
+import knight.arkham.game.helpers.TileMapHelper;
 import knight.arkham.game.objects.Player;
 
 import static knight.arkham.game.helpers.Constants.PIXELS_PER_METER;
@@ -51,11 +51,11 @@ public class GameScreen extends ScreenAdapter {
         //para instanciar nuestro objeto world debemos pasarle un vector2 en el que especificamos la gravedad de X y Y
         //Seteare la gravedad en con el valor de 25 negativo, como es gravedad debe de ser negativo pues va para abajo
 //Para que mi objeto no sea tan liviano seteare la gravedad en 25 en vez de 9.88
-        world = new World(new Vector2(0,-200f), false);
+        world = new World(new Vector2(0,-25), false);
 
         box2DDebugRenderer = new Box2DDebugRenderer();
 
-        TileMapHelperService tileMapHelper = new TileMapHelperService(this);
+        TileMapHelper tileMapHelper = new TileMapHelper(this);
 
         mapRenderer = tileMapHelper.setupMap();
     }

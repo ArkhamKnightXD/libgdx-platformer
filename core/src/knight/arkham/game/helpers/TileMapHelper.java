@@ -17,11 +17,11 @@ import knight.arkham.game.screens.GameScreen;
 import static knight.arkham.game.helpers.Constants.PIXELS_PER_METER;
 
 //clase encargada del manejo del tiledmap
-public class TileMapHelperService {
+public class TileMapHelper {
 
     private final GameScreen gameScreen;
 
-    public TileMapHelperService(GameScreen gameScreen) {
+    public TileMapHelper(GameScreen gameScreen) {
         this.gameScreen = gameScreen;
     }
 
@@ -61,7 +61,7 @@ public class TileMapHelperService {
 
                 if (rectangleName.equals("player")) {
 
-                    Body playerBody = BodyHelperService.createBody(
+                    Body playerBody = BodyHelper.createBody(
                             new Box2DBody(
                                     rectangle.getX() + rectangle.getWidth() / 2,
                                     rectangle.getY() + rectangle.getHeight() / 2,
@@ -83,7 +83,7 @@ public class TileMapHelperService {
 
         PolygonShape shape = createPolygonShape(mapObject);
 
-        BodyHelperService.createStaticBody(new Box2DBody(true, 1000, gameScreen.getWorld(), shape));
+        BodyHelper.createStaticBody(new Box2DBody(true, 1000, gameScreen.getWorld(), shape));
 
         shape.dispose();
     }

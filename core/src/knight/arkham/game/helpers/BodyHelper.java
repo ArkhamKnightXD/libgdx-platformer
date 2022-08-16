@@ -2,9 +2,10 @@ package knight.arkham.game.helpers;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
-public class BodyHelperService {
+public class BodyHelper {
 
     public static void createStaticBody(Box2DBody box2DBody){
 
@@ -35,7 +36,16 @@ public class BodyHelperService {
         shape.setAsBox(box2DBody.width / 2 / Constants.PIXELS_PER_METER,
                 box2DBody.height /2 /Constants.PIXELS_PER_METER);
 
-        body.createFixture(shape, box2DBody.density);
+        FixtureDef fixtureDef = new FixtureDef();
+
+        fixtureDef.shape = shape;
+        fixtureDef.density = box2DBody.density;
+
+//        De esta forma seteo el coeficiente de friccion, de mi objeto para que cuando salto mi player
+//        no se quede pegado a las paredes, sino que resbale
+        fixtureDef.friction = 0;
+
+        body.createFixture(fixtureDef);
 
         shape.dispose();
 
