@@ -15,6 +15,7 @@ public class Box2DBody {
     public PolygonShape polygonShape;
 
 
+//    Constructor completo para cuerpo mas completos
     public Box2DBody(float xPosition, float yPosition, float width, float height,
                      boolean isStatic, float density, World world) {
         this.xPosition = xPosition;
@@ -26,6 +27,7 @@ public class Box2DBody {
         this.world = world;
     }
 
+//    Constructor mas simple para crear cuerpos para elementos del mapa
     public Box2DBody(boolean isStatic, float density, World world, PolygonShape polygonShape) {
         this.isStatic = isStatic;
         this.density = density;

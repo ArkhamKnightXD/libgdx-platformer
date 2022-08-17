@@ -5,11 +5,10 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-
 import static knight.arkham.game.helpers.Constants.PIXELS_PER_METER;
 
 //De esta forma indico que esta clase hereda de GameObject
-public class Player extends GameObject{
+public class Player extends GameObject {
 
     private int jumpCounter;
 
@@ -32,6 +31,8 @@ public class Player extends GameObject{
 
     private void playerMovement() {
 
+//        Debo setear la velocidad en x sino se esta presionando un boton, para que el personaje
+//        se detenga sino se presiona A o D
         velocityX = 0;
 
         if (Gdx.input.isKeyPressed(Input.Keys.D))
@@ -60,7 +61,7 @@ public class Player extends GameObject{
             jumpCounter = 0;
         }
 
-
+//        Siempre que haga cambios en la velocidad de mi objeto, debo hacer un setLinear velocity
         body.setLinearVelocity(velocityX * speed, body.getLinearVelocity().y < 25 ? body.getLinearVelocity().y : 25);
     }
 

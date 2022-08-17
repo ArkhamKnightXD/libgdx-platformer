@@ -34,10 +34,4 @@ public class Platformer extends Game {
 	public void render() {
 		super.render(); // important!
 	}
-
-
-	@Override
-	public void dispose () {
-
-	}
 }

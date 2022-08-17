@@ -13,7 +13,6 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import knight.arkham.game.objects.Player;
 import knight.arkham.game.screens.GameScreen;
-
 import static knight.arkham.game.helpers.Constants.PIXELS_PER_METER;
 
 //clase encargada del manejo del tiledmap
@@ -53,28 +52,37 @@ public class TileMapHelper {
             if (mapObject instanceof PolygonMapObject)
                 createStaticBody(((PolygonMapObject) mapObject));
 
-            if (mapObject instanceof RectangleMapObject) {
+            if (mapObject instanceof RectangleMapObject)
+                createPlayer(mapObject);
 
-                Rectangle rectangle = ((RectangleMapObject) mapObject).getRectangle();
+        }
+    }
 
-                String rectangleName = mapObject.getName();
+    // Aqui manejo la inicializacion de mi player
+    private void createPlayer(MapObject mapObject) {
 
-                if (rectangleName.equals("player")) {
+//     A diferencia de los objetos del mapa, mi player no cree con un rectangulo, asi que puedo obtener este elemento
+//        directamente y crear mi objeto player con los datos de este rectangulo
+        Rectangle rectangle = ((RectangleMapObject) mapObject).getRectangle();
 
-                    Body playerBody = BodyHelper.createBody(
-                            new Box2DBody(
-                                    rectangle.getX() + rectangle.getWidth() / 2,
-                                    rectangle.getY() + rectangle.getHeight() / 2,
-                                    rectangle.getWidth(), rectangle.getHeight(),
-                                    false, 1000, gameScreen.getWorld()
-                            )
-                    );
+//        obtengo el nombre del rectangulo
+        String rectangleName = mapObject.getName();
 
-                    gameScreen.setPlayer(new Player(playerBody, rectangle.getWidth(), rectangle.getHeight()));
-                }
+//        compruebo que el rectangulo se llame player
+        if (rectangleName.equals("player")) {
 
-            }
+//            creo el cuerpo del player, con los datos del rectangulo
+            Body playerBody = BodyHelper.createBody(
+                    new Box2DBody(
+                            rectangle.getX() + rectangle.getWidth() / 2,
+                            rectangle.getY() + rectangle.getHeight() / 2,
+                            rectangle.getWidth(), rectangle.getHeight(),
+                            false, 1000, gameScreen.getWorld()
+                    )
+            );
 
+//            Finalmente seteo el player de mi gamescreen con el playerbody que hice y con los datos del rectangulo
+            gameScreen.setPlayer(new Player(playerBody, rectangle.getWidth(), rectangle.getHeight()));
         }
     }
 

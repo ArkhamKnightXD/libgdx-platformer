@@ -14,7 +14,6 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import knight.arkham.game.Platformer;
 import knight.arkham.game.helpers.TileMapHelper;
 import knight.arkham.game.objects.Player;
-
 import static knight.arkham.game.helpers.Constants.PIXELS_PER_METER;
 
 public class GameScreen extends ScreenAdapter {
@@ -47,7 +46,6 @@ public class GameScreen extends ScreenAdapter {
 
         batch = new SpriteBatch();
 
-
         //para instanciar nuestro objeto world debemos pasarle un vector2 en el que especificamos la gravedad de X y Y
         //Seteare la gravedad en con el valor de 25 negativo, como es gravedad debe de ser negativo pues va para abajo
 //Para que mi objeto no sea tan liviano seteare la gravedad en 25 en vez de 9.88
@@ -76,7 +74,8 @@ public class GameScreen extends ScreenAdapter {
         player.update();
 
         //camera combined envia la Camera's view and projection matrices.
-        batch.setProjectionMatrix(camera.combined);
+//        Esto no me sirve de nada, debo investigar su proposito
+//        batch.setProjectionMatrix(camera.combined);
 
         // indicamos como sera manejada la vista en el mapa, en este caso manejaremos las vista con la camara
         mapRenderer.setView(camera);
@@ -92,8 +91,10 @@ public class GameScreen extends ScreenAdapter {
     //metodo encargado de hacer que la camara siga a nuestro jugador
     private void cameraUpdate(){
 
+//        Obtenemos la posicion actual de la camara
         Vector3 cameraPosition = camera.position;
 
+//        Aqui le seteamos a la camara la posicion de nuestro player
 //        Hago la operaciones extra para conseguir un movimiento de camara mas smooth
         cameraPosition.x = Math.round(player.getBody().getPosition().x * PIXELS_PER_METER * 10) / 10f;
         cameraPosition.y = Math.round(player.getBody().getPosition().y * PIXELS_PER_METER * 10) / 10f;
@@ -117,7 +118,6 @@ public class GameScreen extends ScreenAdapter {
         batch.begin();
 
         batch.end();
-
 
         box2DDebugRenderer.render(world, camera.combined.scl(PIXELS_PER_METER));
     }
