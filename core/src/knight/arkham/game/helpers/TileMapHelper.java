@@ -73,6 +73,7 @@ public class TileMapHelper {
 
 //            creo el cuerpo del player, con los datos del rectangulo
             Body playerBody = BodyHelper.createBody(
+
                     new Box2DBody(
                             rectangle.getX() + rectangle.getWidth() / 2,
                             rectangle.getY() + rectangle.getHeight() / 2,

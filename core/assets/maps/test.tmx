@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.1" orientation="orthogonal" renderorder="right-down" width="20" height="10" tilewidth="128" tileheight="128" infinite="0" nextlayerid="3" nextobjectid="17">
+<map version="1.9" tiledversion="1.9.1" orientation="orthogonal" renderorder="right-down" width="20" height="10" tilewidth="128" tileheight="128" infinite="0" nextlayerid="3" nextobjectid="22">
  <tileset firstgid="1" source="Ground_03.tsx"/>
  <tileset firstgid="2" source="Ground_05.tsx"/>
  <tileset firstgid="3" source="Ground_06.tsx"/>
@@ -11,6 +11,8 @@
  <tileset firstgid="9" source="Ground_12.tsx"/>
  <tileset firstgid="10" source="Ground_04.tsx"/>
  <tileset firstgid="11" source="Ground_02.tsx"/>
+ <tileset firstgid="12" source="Ground_01.tsx"/>
+ <tileset firstgid="13" source="Ground_13.tsx"/>
  <layer id="1" name="background" width="20" height="10">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -21,8 +23,8 @@
 0,0,8,8,8,8,0,0,0,0,0,0,0,8,8,8,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-10,11,11,11,11,11,11,11,5,0,0,10,11,11,11,8,8,11,11,11
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12,11,11,1,
+10,11,11,11,11,11,11,11,5,0,0,10,11,11,11,8,8,11,11,5
 </data>
  </layer>
  <objectgroup id="2" name="collisions">
@@ -39,5 +41,8 @@
    <polygon points="0,0 379.463,0 379.463,128.321 0,128.321"/>
   </object>
   <object id="11" name="player" x="128" y="896" width="128" height="128"/>
+  <object id="20" x="2064" y="1142">
+   <polygon points="0,0 114,-118 368,-114 482,0"/>
+  </object>
  </objectgroup>
 </map>

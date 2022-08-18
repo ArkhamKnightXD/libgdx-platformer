@@ -69,4 +69,6 @@ public class Player extends GameObject {
     public void render(SpriteBatch batch) {
 
     }
+
+
 }

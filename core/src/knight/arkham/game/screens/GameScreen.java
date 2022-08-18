@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -34,6 +35,8 @@ public class GameScreen extends ScreenAdapter {
 
     private Player player;
 
+    private Texture playerTexture;
+
 
     public GameScreen(OrthographicCamera globalCamera) {
 
@@ -56,6 +59,8 @@ public class GameScreen extends ScreenAdapter {
         TileMapHelper tileMapHelper = new TileMapHelper(this);
 
         mapRenderer = tileMapHelper.setupMap();
+
+        playerTexture = new Texture("platformer/Ground_02.png");
     }
 
     @Override
@@ -117,6 +122,11 @@ public class GameScreen extends ScreenAdapter {
 
         batch.begin();
 
+//        No se muestra bien el player con la , aqui se muestra bien pero pasa un error, el texture se sale del
+//        body
+        batch.draw(playerTexture, player.getBody().getPosition().x +570,
+                player.getBody().getPosition().y +293, player.getWidth(), player.getHeight());
+
         batch.end();
 
         box2DDebugRenderer.render(world, camera.combined.scl(PIXELS_PER_METER));
@@ -137,6 +147,7 @@ public class GameScreen extends ScreenAdapter {
         world.dispose();
         mapRenderer.dispose();
         box2DDebugRenderer.dispose();
+        playerTexture.dispose();
     }
 
     public World getWorld() {return world;}
